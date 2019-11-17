@@ -10,6 +10,68 @@
   </head>
 
   <body>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <nav class="nav navbar-nav nav-left">
+          <span>Bookers</span>
+        </nav>
+        <nav>
+          <ul class="nav navbar-nav nav-right">
+            <% if user_signed_in? %>
+            <li>
+              <%= link_to mypage_path(current_user.id) do %>
+              <span class="glyphicon glyphicon-home"></span>  Home
+                <% end %>
+            </li>
+            <li>
+              <%= link_to users_path do %>
+              <span class="glyphicon glyphicon-user"></span>  Users
+              <% end %>
+            </li>
+            <li>
+              <%= link_to books_path do %>
+              <span class="glyphicon glyphicon-book"></span>  Books
+              <% end %>
+            </li>
+             <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+              <span class="glyphicon glyphicon-log-out"></span>  logout
+              <% end %>
+             </li>
+            <% else %>
+            <li>
+              <%= link_to root_path do %>
+              <span class="glyphicon glyphicon-home"></span>  Home
+              <% end %>
+            </li>
+            <li>
+              <%= link_to home_about_path do %>
+              <span class="glyphicon glyphicon-link"></span>  About
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_user_registration_path do %>
+              <span class="glyphicon glyphicon-edit"></span>  sign  up
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_user_session_path do %>
+              <span class="glyphicon glyphicon-log-in"></span>  login
+              <% end %>
+            </li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+    </header>
     <%= yield %>
+    <footer class="container">
+      <div class="row">
+        <div class="col-md-offset-9 col-md-3">
+      <p>CopyRight Infratop.inc</p>
+    </div>
+  </div>
+    </footer>
   </body>
 </html>
+

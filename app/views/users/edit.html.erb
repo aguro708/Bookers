@@ -1,0 +1,28 @@
+<div class="user-edit">
+		    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+	<h2>User info</h2>
+	<%= form_for(@user) do |f| %>
+	    <% if @user.errors.any? %>
+    <div class = "alert alert-warning">
+        <ul>
+            <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
+	<p>Name
+		<%= f.text_field :name%>
+	</p>
+	<p>Image</p>
+	<%= f.attachment_field :profile_image %>
+	<p>Introduction
+		<%= f.text_area :introduction %>
+	</p>
+	<%= f.submit "Update User",class: "btn btn-default" %>
+	<% end %>
+</div>

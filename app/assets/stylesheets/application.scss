@@ -13,3 +13,40 @@
  *= require_tree .
  *= require_self
  */
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+ .nav-left{
+	font-size:20px;
+	padding-top:10px;
+	color:white;
+}
+.nav-right{
+	float:right;
+}
+.body{
+	padding-top:70px;
+}
+.navbar-inverse .navbar-nav>li>a{
+	color:#9d9d9d;
+}
+.about-heading{
+	padding-left:50px;
+}
+.sign-up ,.log-in,.user-edit{
+	padding-top:40px;
+	padding-left:40px;
+}
+.new-password{
+	padding-top:40px;
+	padding-left:40px;
+}
+.actions{
+	margin-top:5px;
+}
+a:visited{
+	color:#666;
+}
+a:hover{
+	background-color:black;
+	color:skyblue;
+}
