@@ -10,6 +10,16 @@ before_action :correct_user, only: [:edit,:update]
 		@book=Book.new
 		@books=@user.books
 	end
+	def following
+		@user=User.find(params[:id])
+		@users=@user.following
+		render 'show_follow'
+	end
+	def followers
+		@user=User.find(params[:id])
+		@users=@user.followers
+		render 'show_follower'
+	end
 	def edit
 		@user=User.find(params[:id])
 	end
@@ -22,6 +32,15 @@ before_action :correct_user, only: [:edit,:update]
 		flash[:notice]="error"
 		render "edit"
 	end
+	end
+	def search
+		@user_or_book=params[:option]
+		@how_search=params[:choice]
+		if @user_or_book=="1"
+			@users=User.search(params[:search], @user_or_book, @how_search)
+		else
+			@books=Book.search(params[:search], @user_or_book, @how_search)
+		end
 	end
 	private
 	def user_params

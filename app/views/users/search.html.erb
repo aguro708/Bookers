@@ -1,0 +1,52 @@
+<div class="body search">
+	<%= form_tag(search_path, :method=>'get')do %>
+	<%= select_tag(:option,options_for_select([["user","1"],["book","2"]]))%>
+	<%= select_tag(:choice,options_for_select([["前方一致検索","1"],["後方一致検索","2"],["完全一致検索","3"],["部分一致検索","4"]]))%>
+	<%= text_field_tag :search %>
+	<%= submit_tag 'Search'%>
+	<% end %>
+<% if @user_or_book=="1" %>
+ <h4 class="hit"><%= "#{@users.count}件の検索結果"%></h4>
+	<h1>User</h1>
+	<table class="table table-striped">
+		<thead>
+		<tr>
+			<th></th>
+			<th><strong>Name</strong></th>
+			<th><strong>Introduction</strong></th>
+		</tr>
+	</thead>
+		<% @users.each do |user| %>
+		<thead>
+			<tr>
+				<td></td>
+				<td class="user-links"><%= link_to user.name,mypage_path(user),class: "user-link" %></td>
+				<td><%= user.introduction %></td>
+			</tr>
+		</thead>
+		<% end %>
+	</table>
+<% elsif @user_or_book=="2" %>
+ <h4 class="hit"><%= "#{@books.count}件の検索結果"%></h4>
+    <h2>Book</h2>
+    <table class="table table-striped">
+    	<thead>
+    		<tr>
+    			<th></th>
+    			<th><strong>Title</strong></th>
+    			<th><strong>Body</strong></th>
+    		</tr>
+    	</thead>
+    	<% @books.each do |book| %>
+    	<thead>
+    	    <tr>
+    	    	<td></td>
+    			<td class="book-links"><%= link_to book.title,book_path(book),class: "book-link" %></td>
+    			<td><%= book.body %></td>
+    		</tr>
+    	</thead>
+    	<% end %>
+    </table>
+<% else %>
+<% end %>
+</div>

@@ -7,7 +7,19 @@ Rails.application.routes.draw do
   	:passwords => 'users/passwords'
   }
   get "users/:id"=>"users#show",as: :mypage
-  resources :users,only: [:edit,:index,:show,:update]
-  resources :books,only: [:index,:show,:edit,:update,:create,:destroy]
+  get "search" => "users#search"
+  post "books/:id"=>"book_comments#create"
+  resources :users,only: [:edit,:index,:show,:update] do
+    member do
+      get :following
+      get :followers
+    end
+  end
+  resources :relationships, only: [:create,:destroy]
+  resources :books,only: [:index,:show,:edit,:update,:create,:destroy] do
+    resources :book_comments,only: [:edit,:update,:destroy]
+    resource :favorites,only: [:create,:destroy]
+  end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

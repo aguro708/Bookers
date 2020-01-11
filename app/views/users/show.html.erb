@@ -8,7 +8,27 @@
 		<div class="row">
 			<div class="user-info col-md-3">
 				<h2>User info</h2>
-				<%= attachment_image_tag @user, :profile_image, fallback: "no_image.jpg",size: "100*100"%>
+				<div class="row">
+				<%= attachment_image_tag @user, :profile_image, fallback: "no_image.jpg",size: "100*100",class: "col-md-6"%>
+				<div class="col-md-6 follow">
+				<%= link_to "following: #{@user.following.count}",following_user_path(@user) %>
+				<%= link_to "followers:#{@user.followers.count}",followers_user_path(@user) %>
+			</div>
+		</div>
+		<div class="row">
+				<% if current_user!=@user %>
+				  <% if current_user.following?(@user)%>
+				    <%= form_for(current_user.active_relationships.find_by(followed_id: @user.id),html: {method: :delete}) do |f| %>
+				    <%= f.submit 'Unfollow',class: "btn btn-danger col-md-4 col-md-offset-4 actions" %>
+				    <% end %>
+				    <% else %>
+				    <%= form_for(current_user.active_relationships.build) do |f| %>
+				    <div><%= hidden_field_tag :followed_id,@user.id %></div>
+				    <%= f.submit "Follow",class: "btn btn-info col-md-4 col-md-offset-4 actions" %>
+				    <% end %>
+				  <% end %>
+				<% end %>
+			</div>
 				<table class="table table-striped">
 					<tr>
 						<td>name</td>

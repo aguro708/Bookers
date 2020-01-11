@@ -4,7 +4,6 @@
     <title>Bookers</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -34,10 +33,15 @@
               <% end %>
             </li>
              <li>
-              <%= link_to destroy_user_session_path, method: :delete do %>
-              <span class="glyphicon glyphicon-log-out"></span>  logout
-              <% end %>
+               <%= link_to search_path do %>
+               <span class="glyphicon glyphicon-search"></span>search
+               <% end %>
              </li>
+              <li>
+               <%= link_to destroy_user_session_path, method: :delete,data:{confirm: "ログアウトしますか？"} do %>
+               <span class="glyphicon glyphicon-log-out"></span>  logout
+               <% end %>
+              </li>
             <% else %>
             <li>
               <%= link_to root_path do %>

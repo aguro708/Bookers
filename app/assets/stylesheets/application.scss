@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
@@ -29,7 +30,7 @@
 .navbar-inverse .navbar-nav>li>a{
 	color:#9d9d9d;
 }
-.about-heading{
+.about-heading,.search{
 	padding-left:50px;
 }
 .sign-up ,.log-in,.user-edit{
@@ -41,12 +42,43 @@
 	padding-left:40px;
 }
 .actions{
-	margin-top:5px;
+	margin-top:15px;
+	margin-bottom:20px;
 }
-a:visited{
+a{
 	color:#666;
 }
 a:hover{
 	background-color:black;
 	color:skyblue;
+}
+li{
+	list-style:none;
+}
+.fa-heart,.hit{
+	color:red;
+}
+.fa-heart-o{
+	color:blue;
+}
+.good a{
+	color:#666;
+	text-decoration:none;
+}
+.book-link,.user-link{
+	text-decoration:underline;
+	color:black;
+}
+.good a:hover,.book-links a:hover,.user-links a:hover{
+	background-color:white;
+	color:gray;
+}
+.follow{
+	padding-top:30px;
+}
+.follow a{
+	color:blue;
+}
+.follow a:hover{
+	background-color:white;
 }
